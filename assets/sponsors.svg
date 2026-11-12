@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 280" width="100%" height="auto">
+  <defs>
+    <linearGradient id="sponBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d"/>
+      <stop offset="50%" stop-color="#051c14"/>
+      <stop offset="100%" stop-color="#0c1026"/>
+    </linearGradient>
+
+    <filter id="cardShadow2" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+
+    <linearGradient id="pixabayGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00c878"/>
+      <stop offset="100%" stop-color="#008a54"/>
+    </linearGradient>
+
+    <linearGradient id="googleGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4285F4"/>
+      <stop offset="50%" stop-color="#34A853"/>
+      <stop offset="75%" stop-color="#FBBC05"/>
+      <stop offset="100%" stop-color="#EA4335"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .font-sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .card-title { font-weight: 800; font-size: 16px; fill: #ffffff; }
+    .card-sub { font-weight: 600; font-size: 10px; letter-spacing: 0.8px; text-transform: uppercase; }
+    .card-desc { font-weight: 400; font-size: 11px; fill: #94a3b8; line-height: 1.4; }
+  </style>
+
+  <!-- Background Base -->
+  <rect width="1200" height="280" rx="20" fill="url(#sponBg)"/>
+  <rect width="1198" height="278" x="1" y="1" rx="19" fill="none" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Top Title -->
+  <g transform="translate(60, 35)">
+    <text x="0" y="0" class="font-sans" font-weight="900" font-size="20px" fill="#ffffff">ECOSSISTEMA OFICIAL DE PARCERIAS &amp; COLABORADORES</text>
+    <text x="0" y="22" class="font-sans" font-size="12px" fill="#64748b">Tecnologia, Mídia e Inteligência Artificial reunidas em prol do open-source</text>
+  </g>
+
+  <!-- 3 Big Cards -->
+  <!-- CARD 1: PIXABAY -->
+  <g transform="translate(60, 80)" filter="url(#cardShadow2)">
+    <rect width="340" height="165" rx="14" fill="#0f172a" stroke="#00ab6b" stroke-width="1.5"/>
+    <g transform="translate(20, 20)">
+      <rect x="0" y="0" width="50" height="50" rx="10" fill="url(#pixabayGrad2)"/>
+      <text x="15" y="36" class="font-sans" font-weight="900" font-size="28px" fill="#ffffff">P</text>
+      <text x="64" y="20" class="font-sans card-title">Pixabay.com</text>
+      <text x="64" y="36" class="font-sans card-sub" fill="#34d399">PATROCINADOR OFICIAL DE MÍDIA</text>
+      <text x="0" y="75" class="font-sans card-desc">A mais amada comunidade global de fotógrafos, produtores musicais e cineastas. Provedora oficial de todo acervo indexado e organizado pela extensão.</text>
+      <g transform="translate(0, 110)">
+        <rect width="105" height="20" rx="4" fill="rgba(0, 171, 107, 0.2)"/>
+        <text x="8" y="14" class="font-sans" font-weight="700" font-size="10px" fill="#00ab6b">OFFICIAL PARTNER</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- CARD 2: GOOGLE ANTIGRAVITY & DEEPMIND -->
+  <g transform="translate(430, 80)" filter="url(#cardShadow2)">
+    <rect width="340" height="165" rx="14" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+    <g transform="translate(20, 20)">
+      <rect x="0" y="0" width="50" height="50" rx="10" fill="#0b1120" stroke="#38bdf8" stroke-width="1.5"/>
+      <!-- Sparkle Shape -->
+      <path d="M 25 10 Q 25 25 10 25 Q 25 25 25 40 Q 25 25 40 25 Q 25 25 25 10 Z" fill="#38bdf8"/>
+      <text x="64" y="20" class="font-sans card-title">Google Antigravity</text>
+      <text x="64" y="36" class="font-sans card-sub" fill="#38bdf8">CO-LABORATÓRIO DE IA &amp; DEEPMIND</text>
+      <text x="0" y="75" class="font-sans card-desc">Engenharia autônoma de software, orquestração de microsserviços do navegador e síntese de código avançada sob a arquitetura Manifest V3.</text>
+      <g transform="translate(0, 110)">
+        <rect width="125" height="20" rx="4" fill="rgba(56, 189, 248, 0.2)"/>
+        <text x="8" y="14" class="font-sans" font-weight="700" font-size="10px" fill="#38bdf8">AI SYSTEM ARCHITECT</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- CARD 3: DL MIDIA GROUP -->
+  <g transform="translate(800, 80)" filter="url(#cardShadow2)">
+    <rect width="340" height="165" rx="14" fill="#0f172a" stroke="#a855f7" stroke-width="1.5"/>
+    <g transform="translate(20, 20)">
+      <rect x="0" y="0" width="50" height="50" rx="10" fill="linear-gradient(135deg, #9333ea, #6366f1)"/>
+      <text x="10" y="34" class="font-sans" font-weight="900" font-size="20px" fill="#ffffff">DL</text>
+      <text x="64" y="20" class="font-sans card-title">DL MÍDIA Group</text>
+      <text x="64" y="36" class="font-sans card-sub" fill="#c084fc">ORIGINAL INITIATIVE &amp; PROD</text>
+      <text x="0" y="75" class="font-sans card-desc">Desenvolvido sob demanda para estúdios, agências e criadores que necessitam de máxima velocidade na ingestão e curadoria de trilhas sonoras.</text>
+      <g transform="translate(0, 110)">
+        <rect width="115" height="20" rx="4" fill="rgba(168, 85, 247, 0.2)"/>
+        <text x="8" y="14" class="font-sans" font-weight="700" font-size="10px" fill="#c084fc">CREATIVE CORE</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,119 +1,213 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="auto">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="100%" height="auto">
   <defs>
     <!-- Background Gradients -->
-    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#090d16" />
-      <stop offset="50%" stop-color="#042018" />
-      <stop offset="100%" stop-color="#0b1329" />
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#060911" />
+      <stop offset="35%" stop-color="#041a13" />
+      <stop offset="70%" stop-color="#0a1529" />
+      <stop offset="100%" stop-color="#030712" />
     </linearGradient>
-    <radialGradient id="glowPixabay" cx="20%" cy="30%" r="50%">
-      <stop offset="0%" stop-color="#00ab6b" stop-opacity="0.35" />
-      <stop offset="100%" stop-color="#00ab6b" stop-opacity="0" />
-    </radialGradient>
-    <radialGradient id="glowGoogle" cx="80%" cy="40%" r="45%">
-      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.30" />
-      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
-    </radialGradient>
-    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="60%" stop-color="#a7f3d0" />
-      <stop offset="100%" stop-color="#38bdf8" />
-    </linearGradient>
-    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
-      <feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#000000" flood-opacity="0.6"/>
+
+    <!-- Neon Glow Filters -->
+    <filter id="neonGreenGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+
+    <!-- Gradients -->
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#a7f3d0" />
+      <stop offset="80%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+
+    <linearGradient id="pixabayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00c878" />
+      <stop offset="100%" stop-color="#007a48" />
+    </linearGradient>
+
+    <linearGradient id="googleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ab6b" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <radialGradient id="radialAmbient1" cx="15%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#00ab6b" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#00ab6b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="radialAmbient2" cx="85%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
   <style>
-    .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 900; font-size: 52px; fill: url(#textGrad); letter-spacing: -1.5px; }
-    .tagline { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 500; font-size: 20px; fill: #94a3b8; }
-    .badge-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; font-size: 13px; fill: #ffffff; }
-    .pill-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 600; font-size: 12px; fill: #e2e8f0; }
-    .footer-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 600; font-size: 12px; fill: #64748b; letter-spacing: 1px; text-transform: uppercase; }
-    .collab-name { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; font-size: 14px; fill: #f8fafc; }
+    .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 900; font-size: 50px; fill: url(#titleGrad); letter-spacing: -1.5px; }
+    .tagline { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 500; font-size: 19px; fill: #94a3b8; }
+    .pill-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; font-size: 11px; fill: #ffffff; letter-spacing: 0.5px; }
+    .stat-val { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 800; font-size: 20px; fill: #ffffff; }
+    .stat-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 600; font-size: 11px; fill: #64748b; text-transform: uppercase; letter-spacing: 0.8px; }
+    .partner-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 800; font-size: 15px; fill: #f8fafc; }
+    .partner-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 500; font-size: 11px; fill: #94a3b8; }
   </style>
 
-  <!-- Background -->
-  <rect width="1200" height="420" rx="20" fill="url(#bgGradient)"/>
-  <rect width="1200" height="420" fill="url(#glowPixabay)"/>
-  <rect width="1200" height="420" fill="url(#glowGoogle)"/>
+  <!-- Background Base -->
+  <rect width="1200" height="480" rx="24" fill="url(#bgGrad)"/>
+  <rect width="1200" height="480" rx="24" fill="url(#radialAmbient1)"/>
+  <rect width="1200" height="480" rx="24" fill="url(#radialAmbient2)"/>
 
-  <!-- Decorative Border -->
-  <rect x="1" y="1" width="1198" height="418" rx="19" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/>
-
-  <!-- Geometric Grid Pattern Lines -->
-  <path d="M0 70 H1200 M0 140 H1200 M0 210 H1200 M0 280 H1200 M0 350 H1200" stroke="#ffffff" stroke-opacity="0.02" stroke-width="1"/>
-  <path d="M150 0 V420 M300 0 V420 M450 0 V420 M600 0 V420 M750 0 V420 M900 0 V420 M1050 0 V420" stroke="#ffffff" stroke-opacity="0.02" stroke-width="1"/>
-
-  <!-- Main Folder & Download Icon Emblem -->
-  <g transform="translate(60, 65)">
-    <!-- Glow behind emblem -->
-    <circle cx="65" cy="65" r="75" fill="#00ab6b" opacity="0.25"/>
-    <rect x="0" y="0" width="130" height="130" rx="30" fill="#0f172a" stroke="#00ab6b" stroke-width="3" filter="url(#cardShadow)"/>
-    <!-- Folder Silhouette -->
-    <path d="M 28 42 L 52 42 L 62 52 L 102 52 C 106 52 108 54 108 58 L 108 92 C 108 96 106 98 102 98 L 28 98 C 24 98 22 96 22 92 L 22 48 C 22 44 24 42 28 42 Z" fill="#00ab6b" opacity="0.9"/>
-    <!-- Arrow Down -->
-    <path d="M 65 58 L 65 80 M 55 72 L 65 82 L 75 72" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="92" cy="38" r="8" fill="#38bdf8"/>
+  <!-- Tech Grid Background Pattern -->
+  <g opacity="0.04" stroke="#ffffff" stroke-width="1">
+    <line x1="0" y1="60" x2="1200" y2="60"/>
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="180" x2="1200" y2="180"/>
+    <line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="360" x2="1200" y2="360"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="120" y1="0" x2="120" y2="480"/>
+    <line x1="240" y1="0" x2="240" y2="480"/>
+    <line x1="360" y1="0" x2="360" y2="480"/>
+    <line x1="480" y1="0" x2="480" y2="480"/>
+    <line x1="600" y1="0" x2="600" y2="480"/>
+    <line x1="720" y1="0" x2="720" y2="480"/>
+    <line x1="840" y1="0" x2="840" y2="480"/>
+    <line x1="960" y1="0" x2="960" y2="480"/>
+    <line x1="1080" y1="0" x2="1080" y2="480"/>
   </g>
 
-  <!-- Header Titles -->
-  <text x="220" y="105" class="title">PIXABAY SMART ORGANIZER</text>
-  <text x="220" y="142" class="tagline">Roteamento Inteligente de Downloads por Busca, Categoria e Nuvem Google Drive</text>
+  <!-- Border Frame -->
+  <rect x="2" y="2" width="1196" height="476" rx="22" fill="none" stroke="url(#borderGrad)" stroke-width="2"/>
 
-  <!-- Feature Pills -->
-  <g transform="translate(220, 168)">
-    <!-- Pill 1 -->
-    <rect x="0" y="0" width="195" height="32" rx="16" fill="rgba(0, 171, 107, 0.2)" stroke="#00ab6b" stroke-width="1.2"/>
-    <text x="16" y="20" class="pill-text">🎯 Detecção de Busca SPA</text>
-
-    <!-- Pill 2 -->
-    <rect x="205" y="0" width="205" height="32" rx="16" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" stroke-width="1.2"/>
-    <text x="221" y="20" class="pill-text">☁️ Google Drive Sync (Mac)</text>
-
-    <!-- Pill 3 -->
-    <rect x="420" y="0" width="185" height="32" rx="16" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" stroke-width="1.2"/>
-    <text x="436" y="20" class="pill-text">🎵 Captura do Player DOM</text>
-
-    <!-- Pill 4 -->
-    <rect x="615" y="0" width="150" height="32" rx="16" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" stroke-width="1.2"/>
-    <text x="631" y="20" class="pill-text">⚡ Manifest V3 Puro</text>
+  <!-- Hero Logo Badge (3D Floating Effect) -->
+  <g transform="translate(60, 60)" filter="url(#cardShadow)">
+    <!-- Base Glow -->
+    <rect x="0" y="0" width="124" height="124" rx="28" fill="#0f172a" stroke="#00ab6b" stroke-width="2.5"/>
+    <rect x="4" y="4" width="116" height="116" rx="24" fill="url(#pixabayGrad)" opacity="0.15"/>
+    
+    <!-- Stylized 3D Folder Graphic -->
+    <path d="M 28 40 L 52 40 L 62 50 L 96 50 C 100 50 102 52 102 56 L 102 88 C 102 92 100 94 96 94 L 28 94 C 24 94 22 92 22 88 L 22 46 C 22 42 24 40 28 40 Z" fill="#00ab6b"/>
+    <!-- Fold Tab Cut -->
+    <path d="M 26 48 L 98 48 L 94 88 L 22 88 Z" fill="#008a54" opacity="0.4"/>
+    <!-- Download Fast Arrow with Trail -->
+    <path d="M 62 52 L 62 76" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M 52 68 L 62 78 L 72 68" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Floating Orbiting Dot -->
+    <circle cx="98" cy="30" r="9" fill="#38bdf8" filter="url(#glowCyan)"/>
+    <circle cx="98" cy="30" r="4" fill="#ffffff"/>
   </g>
 
-  <!-- Bottom Divider -->
-  <line x1="60" y1="240" x2="1140" y2="240" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1.5"/>
+  <!-- Header Main Content -->
+  <g transform="translate(210, 65)">
+    <!-- Version Tag -->
+    <g transform="translate(0, 5)">
+      <rect x="0" y="0" width="145" height="24" rx="12" fill="rgba(0, 171, 107, 0.2)" stroke="#00ab6b" stroke-width="1.2"/>
+      <circle cx="12" cy="12" r="4" fill="#00e58f"/>
+      <text x="24" y="16" class="pill-label" fill="#00e58f">MANIFEST V3 • v1.0</text>
+    </g>
 
-  <!-- Sponsor & Collaborators Section -->
-  <!-- Col 1: Pixabay -->
-  <g transform="translate(60, 265)">
-    <text x="0" y="15" class="footer-label">🌟 Patrocinador Oficial de Conteúdo</text>
-    <rect x="0" y="28" width="310" height="85" rx="14" fill="rgba(15, 23, 42, 0.7)" stroke="rgba(0, 171, 107, 0.4)" stroke-width="1.5"/>
-    <!-- Pixabay Logo Shape -->
-    <rect x="18" y="44" width="50" height="50" rx="10" fill="#00ab6b"/>
-    <text x="32" y="78" font-family="sans-serif" font-weight="900" font-size="28" fill="#ffffff">P</text>
-    <text x="80" y="60" class="collab-name">Pixabay.com</text>
-    <text x="80" y="78" font-family="sans-serif" font-size="11px" fill="#94a3b8">Milhões de Trilhas, Áudios e Efeitos</text>
-    <text x="80" y="94" font-family="sans-serif" font-size="10px" fill="#00ab6b" font-weight="600">OFFICIAL CONTENT PARTNER</text>
+    <!-- Main Title -->
+    <text x="0" y="68" class="title">PIXABAY SMART ORGANIZER</text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="102" class="tagline">Roteamento Quântico de Áudios por Termo de Busca e Sincronização Google Drive</text>
+
+    <!-- Key Feature Pills -->
+    <g transform="translate(0, 126)">
+      <!-- Pill 1 -->
+      <g>
+        <rect x="0" y="0" width="180" height="32" rx="16" fill="rgba(0, 171, 107, 0.15)" stroke="#00ab6b" stroke-width="1.2"/>
+        <text x="14" y="20" font-family="sans-serif" font-weight="700" font-size="12px" fill="#6ee7b7">🔍 Busca Inteligente SPA</text>
+      </g>
+      <!-- Pill 2 -->
+      <g transform="translate(192, 0)">
+        <rect x="0" y="0" width="195" height="32" rx="16" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="1.2"/>
+        <text x="14" y="20" font-family="sans-serif" font-weight="700" font-size="12px" fill="#7dd3fc">☁️ Google Drive Nuvem</text>
+      </g>
+      <!-- Pill 3 -->
+      <g transform="translate(399, 0)">
+        <rect x="0" y="0" width="180" height="32" rx="16" fill="rgba(168, 85, 247, 0.15)" stroke="#a855f7" stroke-width="1.2"/>
+        <text x="14" y="20" font-family="sans-serif" font-weight="700" font-size="12px" fill="#d8b4fe">🎵 Captura Real do DOM</text>
+      </g>
+      <!-- Pill 4 -->
+      <g transform="translate(591, 0)">
+        <rect x="0" y="0" width="165" height="32" rx="16" fill="rgba(245, 158, 11, 0.15)" stroke="#f59e0b" stroke-width="1.2"/>
+        <text x="14" y="20" font-family="sans-serif" font-weight="700" font-size="12px" fill="#fcd34d">🛡️ Sanitização macOS</text>
+      </g>
+    </g>
   </g>
 
-  <!-- Col 2: Google & Antigravity -->
-  <g transform="translate(410, 265)">
-    <text x="0" y="15" class="footer-label">🚀 IA & Engenharia Colaborativa</text>
-    <rect x="0" y="28" width="350" height="85" rx="14" fill="rgba(15, 23, 42, 0.7)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5"/>
-    <!-- Google Colors Icon -->
-    <rect x="18" y="44" width="50" height="50" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="35" y="77" font-family="sans-serif" font-weight="900" font-size="24" fill="#38bdf8">G</text>
-    <text x="80" y="60" class="collab-name">Google Antigravity &amp; DeepMind</text>
-    <text x="80" y="78" font-family="sans-serif" font-size="11px" fill="#94a3b8">Arquitetura de Agentes Autônomos MV3</text>
-    <text x="80" y="94" font-family="sans-serif" font-size="10px" fill="#38bdf8" font-weight="600">AI ENGINEERING COLLABORATOR</text>
+  <!-- Glowing Divider Line -->
+  <line x1="60" y1="270" x2="1140" y2="270" stroke="url(#titleGrad)" stroke-opacity="0.25" stroke-width="1.5"/>
+
+  <!-- Bottom Showcase Cards: 3 Interactive Columns -->
+
+  <!-- CARD 1: PATROCINADOR PIXABAY -->
+  <g transform="translate(60, 295)">
+    <rect x="0" y="0" width="340" height="145" rx="16" fill="rgba(15, 23, 42, 0.65)" stroke="rgba(0, 171, 107, 0.35)" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <g transform="translate(20, 20)">
+      <!-- Pixabay P Icon -->
+      <rect x="0" y="0" width="52" height="52" rx="12" fill="url(#pixabayGrad)"/>
+      <text x="16" y="37" font-family="sans-serif" font-weight="900" font-size="30" fill="#ffffff">P</text>
+      <!-- Text -->
+      <text x="68" y="22" class="partner-title">Pixabay.com</text>
+      <text x="68" y="40" class="partner-sub">Patrocinador Oficial de Conteúdo</text>
+      <g transform="translate(68, 48)">
+        <rect x="0" y="0" width="135" height="18" rx="4" fill="rgba(0, 171, 107, 0.25)"/>
+        <text x="8" y="13" font-family="sans-serif" font-weight="700" font-size="10px" fill="#34d399">OFFICIAL SPONSOR</text>
+      </g>
+      <text x="0" y="90" font-family="sans-serif" font-size="11px" fill="#94a3b8">Milhões de músicas, vinhetas e trilhas sonoras livres de royalties catalogadas com precisão.</text>
+    </g>
   </g>
 
-  <!-- Col 3: Open Source References -->
-  <g transform="translate(800, 265)">
-    <text x="0" y="15" class="footer-label">🤝 Inspirações &amp; Referências GitHub</text>
-    <rect x="0" y="28" width="340" height="85" rx="14" fill="rgba(15, 23, 42, 0.7)" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1.5"/>
-    <text x="20" y="55" font-family="sans-serif" font-size="12px" fill="#f1f5f9" font-weight="600">• FButros / DownloadsOrganiser</text>
-    <text x="20" y="75" font-family="sans-serif" font-size="12px" fill="#f1f5f9" font-weight="600">• unintended / download-organizer</text>
-    <text x="20" y="95" font-family="sans-serif" font-size="12px" fill="#f1f5f9" font-weight="600">• Chromium Downloads API Standard</text>
+  <!-- CARD 2: GOOGLE & GOOGLE ANTIGRAVITY -->
+  <g transform="translate(430, 295)">
+    <rect x="0" y="0" width="340" height="145" rx="16" fill="rgba(15, 23, 42, 0.65)" stroke="rgba(56, 189, 248, 0.35)" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <g transform="translate(20, 20)">
+      <!-- Google Antigravity Spark Icon -->
+      <rect x="0" y="0" width="52" height="52" rx="12" fill="url(#googleGrad)"/>
+      <!-- Sparkle Vector -->
+      <path d="M 26 12 Q 26 26 12 26 Q 26 26 26 40 Q 26 26 40 26 Q 26 26 26 12 Z" fill="#ffffff"/>
+      <!-- Text -->
+      <text x="68" y="22" class="partner-title">Google Antigravity</text>
+      <text x="68" y="40" class="partner-sub">Engenharia Autônoma &amp; DeepMind</text>
+      <g transform="translate(68, 48)">
+        <rect x="0" y="0" width="150" height="18" rx="4" fill="rgba(56, 189, 248, 0.25)"/>
+        <text x="8" y="13" font-family="sans-serif" font-weight="700" font-size="10px" fill="#38bdf8">AI CO-LABORATORY</text>
+      </g>
+      <text x="0" y="90" font-family="sans-serif" font-size="11px" fill="#94a3b8">Arquitetura de agentes inteligentes em Manifest V3 com roteamento quântico de arquivos.</text>
+    </g>
+  </g>
+
+  <!-- CARD 3: DL MIDIA INNOVATION -->
+  <g transform="translate(800, 295)">
+    <rect x="0" y="0" width="340" height="145" rx="16" fill="rgba(15, 23, 42, 0.65)" stroke="rgba(168, 85, 247, 0.35)" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <g transform="translate(20, 20)">
+      <!-- DL Logo -->
+      <rect x="0" y="0" width="52" height="52" rx="12" fill="linear-gradient(135deg, #a855f7, #6366f1)"/>
+      <text x="12" y="35" font-family="sans-serif" font-weight="900" font-size="22" fill="#ffffff">DL</text>
+      <!-- Text -->
+      <text x="68" y="22" class="partner-title">DL MÍDIA Group</text>
+      <text x="68" y="40" class="partner-sub">Hub de Inovação &amp; Produção</text>
+      <g transform="translate(68, 48)">
+        <rect x="0" y="0" width="150" height="18" rx="4" fill="rgba(168, 85, 247, 0.25)"/>
+        <text x="8" y="13" font-family="sans-serif" font-weight="700" font-size="10px" fill="#c084fc">ORIGINAL INITIATIVE</text>
+      </g>
+      <text x="0" y="90" font-family="sans-serif" font-size="11px" fill="#94a3b8">Workflow corporativo desenvolvido para otimizar 100% da cadeia de áudio e vídeo publicitário.</text>
+    </g>
   </g>
 </svg>

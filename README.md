@@ -1,183 +1,159 @@
 <div align="center">
 
-![Pixabay Smart Organizer Banner](assets/banner.svg)
+<img src="assets/banner.svg" alt="Pixabay Smart Organizer Banner" width="100%" />
 
 # ⚡ PIXABAY SMART ORGANIZER
 ### *A Extensão Quântica para Downloads Inteligentes de Áudios, Músicas e Trilhas*
 
+[![GitHub Stars](https://img.shields.io/github/stars/DLMIDIA/pixabay-smart-organizer?style=for-the-badge&color=00ab6b)](https://github.com/DLMIDIA/pixabay-smart-organizer/stargazers)
 [![Manifest V3](https://img.shields.io/badge/Chrome%20Extension-Manifest%20V3-00ab6b?style=for-the-badge&logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/mv3/)
-[![Sponsor](https://img.shields.io/badge/Official%20Sponsor-Pixabay-00ab6b?style=for-the-badge&logo=pixabay&logoColor=white)](https://pixabay.com)
+[![Official Sponsor](https://img.shields.io/badge/Official%20Sponsor-Pixabay-00ab6b?style=for-the-badge&logo=pixabay&logoColor=white)](https://pixabay.com)
 [![Collaborator](https://img.shields.io/badge/Collaborator-Google%20Antigravity-38bdf8?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google)
 [![License: MIT](https://img.shields.io/badge/License-MIT-f59e0b?style=for-the-badge)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Windows%20%7C%20Linux-6366f1?style=for-the-badge)]()
+[![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Windows%20%7C%20Linux-818cf8?style=for-the-badge)]()
+
+<br>
 
 <p align="center">
-  <b>Diga adeus à selva caótica da sua pasta de Downloads.</b><br>
-  Toda vez que você pesquisa por <i>"comercial"</i>, <i>"marcha"</i>, <i>"vinheta"</i> ou <i>"podcast"</i> no Pixabay,<br>
-  seus arquivos são instantaneamente capturados, limpos e salvos na pasta exata do projeto — ou sincronizados direto no seu <b>Google Drive</b>.
+  <b>Diga adeus ao caos na sua pasta de Downloads.</b><br>
+  Toda vez que você pesquisa por <i>"comercial"</i>, <i>"marcha"</i>, <i>"podcast"</i> ou <i>"vinheta"</i> no Pixabay,<br>
+  seus arquivos são capturados com o <b>título real da música</b> e salvos na pasta exata do projeto — ou sincronizados automaticamente na nuvem do seu <b>Google Drive</b>!
 </p>
 
 ---
 
-[🚀 Instalação Rápida](#-instalação-rápida-no-chrome) •
-[✨ Recursos](#-super-recursos) •
+[🎮 Interface em Ação](#-interface-em-ação) •
+[🏗️ Como Funciona](#-como-funciona-o-fluxo-de-dados) •
+[✨ Super Recursos](#-super-recursos) •
 [☁️ Sincronização Google Drive](#️-a-mágica-do-google-drive-na-nuvem) •
-[🤝 Patrocinador & Colaboradores](#-patrocinador-oficial--co-laboratórios) •
-[📚 Referências](#-referências-de-código-aberto) •
-[📦 Deploy no GitHub](#-como-subir-este-projeto-no-github)
+[🚀 Instalação](#-instalação-rápida-no-chrome) •
+[🤝 Patrocinador & Parceiros](#-patrocinador-oficial--co-laboratórios) •
+[📚 Referências](#-referências-de-código-aberto)
 
 ---
 
 </div>
 
-## 🌌 O Problema Real & A Solução Elegante
+<br>
 
-Quem produz conteúdo ou trabalha com audiovisual sabe da dor: você passa horas procurando a trilha perfeita no Pixabay, clica em baixar, e o arquivo vem batizado como:
-```text
-corporate-music-1489201_original.mp3
-```
-Ele cai no limbo da pasta `Downloads` junto com notas fiscais, boletos e memes. Dois dias depois, você apaga a pasta por engano e precisa recomeçar do zero porque ninguém sabe o que diabos é `corporate-music-1489201`.
+## 🎮 Interface em Ação
 
-### 🎯 Com o Pixabay Smart Organizer:
-1. Você pesquisa `comercial` no Pixabay.
-2. Clica no botão de download da faixa *"Upbeat Energy"*.
-3. O script intercepta o evento, extrai o título real do player da tela e salva:
-```text
-📁 Google Drive (ou Downloads)
-└── 📁 Comercial/
-    └── 🎵 Comercial - Upbeat Energy.mp3
-```
-Um **Toast flutuante** futurista pisca no canto da tela confirmando a operação com zero fricção.
+<div align="center">
+  <img src="assets/preview-ui.svg" alt="Pixabay Smart Organizer Interface Preview" width="100%" />
+</div>
+
+> **Na tela do Pixabay:** Quando você clica em baixar qualquer faixa, um Toast flutuante avisa exatamente o caminho onde o arquivo foi salvo.  
+> **No Painel da Extensão:** Você escolhe com um clique a pasta de destino (`Google Drive`, `Pixabay`, `Comerciais`) e seleciona categorias rápidas.
 
 ---
 
-## 🏗️ Arquitetura do Fluxo
+## 🏗️ Como Funciona o Fluxo de Dados
+
+<div align="center">
+  <img src="assets/architecture.svg" alt="Diagrama de Arquitetura de Dados" width="100%" />
+</div>
 
 ```mermaid
-flowchart LR
-    A[🔍 Pixabay Search SPA] -->|1. Detecta Termo| B[🏷️ Content Script]
-    B -->|2. Intercepta Clique de Download| C[⚡ Extrai Título Real do DOM]
-    C -->|3. Toast na Tela + Mensagem| D[🛸 Background Service Worker MV3]
-    D -->|4. onDeterminingFilename| E[🛡️ Sanitização de Caracteres]
-    E -->|5. Roteamento Inteligente| F[(📂 Pasta Local ou Nuvem Google Drive)]
+sequenceDiagram
+    autonumber
+    actor User as 👤 Usuário
+    participant Web as 🌐 Pixabay (Página SPA)
+    participant Content as 🏷️ Content Script
+    participant BG as 🛸 Service Worker (MV3)
+    participant Mac as 🍎 Ponte macOS (Symlink)
+    participant Drive as ☁️ Google Drive Nuvem
+
+    User->>Web: Pesquisa "comercial" e clica em Baixar
+    Web->>Content: Evento de clique interceptado
+    Content->>Content: Extrai título do card ("Upbeat Energy")
+    Content->>User: Exibe Toast com feedback visual
+    Content->>BG: Dispara REGISTER_DOWNLOAD_INTENT
+    BG->>BG: onDeterminingFilename higieniza o caminho
+    BG->>Mac: Grava em Downloads/GoogleDrive-Pixabay/Comercial/
+    Mac->>Drive: Encaminha em tempo real para 00 - DL MIDIA/Trilhas Pixabay
+    Drive-->>User: ✅ Arquivo sincronizado com toda a equipe!
 ```
 
 ---
 
 ## ✨ Super Recursos
 
-- **🧠 Detecção Semântica em Tempo Real:** Lê a URL do SPA (`/music/search/...`, `/sound-effects/...`, tags de gênero ou campos de busca).
-- **🎵 DOM Player Scraper:** Não salva hashes numéricos feios; lê o nome real da faixa do player do Pixabay antes do download disparar.
-- **☁️ Integração com Google Drive (Mac & PC):** Roteia arquivos direto para a nuvem da empresa através do atalho de sistema nativo.
-- **🎛️ Painel Popup Moderno:**
-  - Alternador de ativação (Toggle On/Off).
-  - Seletor rápido de pastas (`☁️ Google Drive`, `🎵 Pixabay`, `💼 Comerciais`, `🔊 Efeitos`).
-  - Chips de categorias com 1 clique.
-  - Formato de nomenclatura personalizável (`[Categoria] - [Título]` ou com `[Data]`).
-  - Histórico colapsável discreto para checagem rápida.
-- **🛡️ Escudo de Sanitização:** Higieniza caracteres ilegais (`< > : " / \ | ? *`) para garantir integridade no macOS, Windows e Linux.
+| Recurso | Descrição |
+| :--- | :--- |
+| **🧠 Detecção Semântica SPA** | Lê URLs dinâmicas do Pixabay (`/music/search/...`, `/sound-effects/...`, tags de gênero e query strings) sem recarregar a página. |
+| **🎵 DOM Player Scraper** | Extrai o título real e autor exibidos no card do Pixabay, aposentando códigos genéricos como `music-139029.mp3`. |
+| **☁️ Ponte Google Drive** | Integração nativa no macOS que canaliza os downloads para os Discos Compartilhados da DL Mídia. |
+| **🛡️ Escudo de Sanitização** | Remove caracteres ilegais (`< > : " / \ \| ? *`), garantindo compatibilidade total no Windows, macOS e Linux. |
+| **🎛️ Painel Popup Moderno** | Toggle On/Off instantâneo, botões de pastas rápidas, tags de 1 clique e histórico colapsável para zero poluição visual. |
 
 ---
 
 ## ☁️ A Mágica do Google Drive na Nuvem
 
-Como as extensões do Chrome só podem escrever dentro da sandbox de downloads, criamos uma **ponte transparente no macOS**:
-Um atalho do sistema (`symlink`) que conecta `~/Downloads/GoogleDrive-Pixabay` diretamente à sua pasta compartilhada do Google Drive:
+Por segurança, extensões do Chrome não podem salvar arquivos fora da pasta de downloads. **Nós superamos essa limitação com uma ponte de kernel no macOS**:
+
+Um atalho de sistema (`symlink`) que liga sua pasta `Downloads/GoogleDrive-Pixabay` diretamente ao seu Google Drive:
 
 ```bash
-ln -snf "/Users/SEU_USUARIO/Library/CloudStorage/GoogleDrive-SUA_CONTA/Discos partilhados/PASTA_DO_DRIVE" ~/Downloads/GoogleDrive-Pixabay
+ln -snf "/Users/SEU_USUARIO/Library/CloudStorage/GoogleDrive-SUA_CONTA/Discos partilhados/2026 - DRIVE - DL MIDIA/00 - DL MIDIA/Trilhas Pixabay" ~/Downloads/GoogleDrive-Pixabay
 ```
-Quando o Chrome envia o arquivo para a pasta `GoogleDrive-Pixabay`, o sistema operacional desvia o fluxo silenciosamente para dentro do seu **Google Drive corporativo**, sincronizando na nuvem com toda a sua equipe na velocidade da luz!
+
+Quando a extensão baixa uma trilha para `GoogleDrive-Pixabay/Comercial/`, o macOS faz o desvio instantâneo para dentro da nuvem corporativa!
 
 ---
 
 ## 🚀 Instalação Rápida no Chrome
 
-Não precisa compilar, instalar Node ou rodar `npm build`. É Vanilla JS puro e ultrarrápido:
+Não precisa compilar nada. É Vanilla JavaScript puro:
 
-1. **Clone ou baixe** este repositório para o seu computador.
-2. Abra o Google Chrome e vá para a tela de extensões:
+```bash
+# 1. Clone o repositório
+git clone https://github.com/DLMIDIA/pixabay-smart-organizer.git
+```
+
+1. Abra o Google Chrome e digite na barra de endereços:
    ```text
    chrome://extensions/
    ```
-3. No canto superior direito, ative o switch **"Modo do desenvolvedor"** (*Developer mode*).
-4. No canto superior esquerdo, clique em **"Carregar sem compactação"** (*Load unpacked*).
-5. Selecione a pasta `pixabay-smart-organizer`.
-6. Fixe o ícone verde na sua barra de extensões do Chrome.
-7. Abra o [Pixabay](https://pixabay.com), faça uma busca por áudios e aproveite!
+2. No canto superior direito, ative a chave **"Modo do desenvolvedor"**.
+3. No canto superior esquerdo, clique no botão **"Carregar sem compactação"** (*Load unpacked*).
+4. Selecione a pasta clonada `pixabay-smart-organizer`.
+5. Fixe o ícone verde na sua barra de extensões.
 
 ---
 
-## 🌟 Patrocinador Oficial & Co-Laboratórios
+## 🤝 Patrocinador Oficial & Co-Laboratórios
 
-<table align="center" width="100%">
-  <tr>
-    <td align="center" width="50%">
-      <h3>👑 PATROCINADOR OFICIAL DE MÍDIA</h3>
-      <a href="https://pixabay.com" target="_blank">
-        <img src="https://pixabay.com/static/img/logo.svg" width="180" alt="Pixabay Logo" /><br>
-        <b>Pixabay.com</b>
-      </a>
-      <p><i>A maior comunidade criativa de mídia e trilhas sonoras livres de direitos autorais do planeta. Provedora oficial das faixas organizadas por esta extensão.</i></p>
-    </td>
-    <td align="center" width="50%">
-      <h3>🛸 IA & ENGENHARIA DE SISTEMAS</h3>
-      <a href="https://deepmind.google" target="_blank">
-        <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" width="60" alt="Google Antigravity Spark" /><br>
-        <b>Google Antigravity &amp; Google DeepMind</b>
-      </a>
-      <p><i>Arquitetura agentic, orquestração de código autônomo e design de sistemas Manifest V3 idealizados em cooperação simbiótica com inteligência artificial avançada.</i></p>
-    </td>
-  </tr>
-</table>
+<div align="center">
+  <img src="assets/sponsors.svg" alt="Patrocinadores e Colaboradores Oficiais" width="100%" />
+</div>
+
+<br>
+
+| Organização | Papel no Projeto | Contribuição |
+| :--- | :--- | :--- |
+| **[Pixabay.com](https://pixabay.com)** | 👑 **Patrocinador Oficial de Conteúdo** | Provedor do maior acervo livre de direitos autorais de trilhas sonoras e efeitos do mundo. |
+| **[Google Antigravity & DeepMind](https://deepmind.google)** | 🛸 **IA & Engenharia Autônoma** | Arquitetura agentic, orquestração de microsserviços de navegador e síntese de código Manifest V3. |
+| **[DL MÍDIA Group](https://dlmidia.com.br)** | ⚡ **Iniciativa Criativa & Produção** | Concepção, validação de workflow publicitário e aplicação prática em estúdios de produção. |
 
 ---
 
 ## 📚 Referências de Código Aberto
 
-Este projeto foi construído sobre os ombros de gigantes da comunidade open-source e documentações oficiais da Web:
+Este projeto foi construído respeitando e referenciando grandes contribuições da comunidade open-source:
 
-* 📦 **[FButros / DownloadsOrganiser](https://github.com/FButros/DownloadsOrganiser):** Padrão de mapeamento e categorização de downloads no ecossistema Chromium.
-* 📦 **[unintended / download-organizer-chrome-extension](https://github.com/unintended/download-organizer-chrome-extension):** Filosofia de regex dinâmico para subpastas de downloads.
-* 📦 **[aidandj / Chrome-Download-Organizer](https://github.com/aidandj/Chrome-Download-Organizer):** Estrutura leve de listeners de eventos no navegador.
-* 📦 **[rpawk / image_downloader](https://github.com/rpawk/image_downloader):** Técnicas de extração direta de elementos de mídia em plataformas de stock.
-* 📖 **[Google Chrome Extensions API Documentation](https://developer.chrome.com/docs/extensions/reference/api/downloads):** Especificação oficial da API `chrome.downloads.onDeterminingFilename`.
-
----
-
-## 📦 Como Subir este Projeto no GitHub
-
-Para publicar agora mesmo e compartilhar com o mundo:
-
-```bash
-# 1. Entre na pasta da extensão
-cd "pixabay-smart-organizer"
-
-# 2. Inicialize o repositório git
-git init
-
-# 3. Adicione todos os arquivos
-git add .
-
-# 4. Faça o primeiro commit
-git commit -m "feat: initial launch of Pixabay Smart Organizer with Google Drive sync"
-
-# 5. Defina a branch principal como main
-git branch -M main
-
-# 6. Conecte ao seu repositório no GitHub (crie antes um repositório vazio no github.com):
-git remote add origin https://github.com/SEU-USUARIO/pixabay-smart-organizer.git
-
-# 7. Suba o código para as estrelas!
-git push -u origin main
-```
+* 📦 **[FButros / DownloadsOrganiser](https://github.com/FButros/DownloadsOrganiser):** Padrão de roteamento de arquivos em extensões Chromium.
+* 📦 **[unintended / download-organizer-chrome-extension](https://github.com/unintended/download-organizer-chrome-extension):** Filosofia de regex dinâmico para subpastas.
+* 📦 **[aidandj / Chrome-Download-Organizer](https://github.com/aidandj/Chrome-Download-Organizer):** Tratamento assíncrono de downloads no navegador.
+* 📦 **[rpawk / image_downloader](https://github.com/rpawk/image_downloader):** Técnicas de extração direta de mídias stock.
+* 📖 **[Chromium Downloads API Documentation](https://developer.chrome.com/docs/extensions/reference/api/downloads):** Especificação oficial `onDeterminingFilename`.
 
 ---
 
 ## 📄 Licença
 
-Este projeto é de código aberto sob a licença **MIT** — sinta-se livre para usar, modificar, distribuir e evoluir. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Distribuído sob a licença **MIT** de código aberto. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 <div align="center">
-  <sub>Criado com paixão criativa, café e inteligência artificial • 2026</sub>
+  <sub>Desenvolvido com tecnologia, paixão criativa e inteligência artificial • 2026</sub>
 </div>
