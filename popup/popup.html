@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixabay Smart Organizer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="logo-wrapper">
+          <img src="../icons/icon48.png" alt="Pixabay Organizer" class="logo-img">
+        </div>
+        <div>
+          <h1 class="app-title">Pixabay Organizer</h1>
+          <span class="app-subtitle">Downloads Inteligentes</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <label class="switch" title="Ativar ou desativar organização automática">
+          <input type="checkbox" id="toggle-enabled" checked>
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </header>
+
+    <!-- SECTION 1: PASTA DE DESTINO (ONDE SALVAR) -->
+    <section class="card destination-card">
+      <div class="card-header-small">
+        <span class="card-label">📁 PASTA DE DESTINO</span>
+        <span id="destination-type-badge" class="badge-status active">Ativa</span>
+      </div>
+
+      <!-- Input de Pasta Direto -->
+      <div class="folder-input-wrapper">
+        <input type="text" id="base-folder-input" placeholder="Ex: GoogleDrive-Pixabay ou Pixabay" value="GoogleDrive-Pixabay">
+        <button id="btn-save-folder" class="btn-primary-sm" title="Salvar nome da pasta">OK</button>
+      </div>
+
+      <!-- Pastas Rápidas / Favoritas -->
+      <div class="folder-presets-wrapper">
+        <span class="mini-label">Pastas Rápidas:</span>
+        <div id="folder-chips-container" class="folder-chips">
+          <button class="folder-chip active" data-folder="GoogleDrive-Pixabay">☁️ Google Drive</button>
+          <button class="folder-chip" data-folder="Pixabay">🎵 Pixabay</button>
+          <button class="folder-chip" data-folder="Trilhas Comerciais">💼 Comerciais</button>
+          <button class="folder-chip" data-folder="Efeitos Sonoros">🔊 Efeitos</button>
+        </div>
+      </div>
+
+      <!-- Dica / Ajuda Google Drive -->
+      <div class="gdrive-tip-box">
+        <div class="gdrive-tip-header" id="toggle-gdrive-help">
+          <span>💡 Como salvar direto no Google Drive?</span>
+          <span class="arrow-icon">▾</span>
+        </div>
+        <div id="gdrive-help-content" class="gdrive-help-content hidden">
+          <p>Para o Chrome enviar os arquivos direto para o seu Google Drive na nuvem, basta criar um atalho no seu Mac:</p>
+          <code id="symlink-cmd">ln -s "/Users/danieljuniorbarbosadasilva/Library/CloudStorage/GoogleDrive-contato@dlmidia.com.br/Discos partilhados/2026 - DRIVE - DL MIDIA/00 - DL MIDIA" ~/Downloads/GoogleDrive-Pixabay</code>
+          <button id="btn-copy-symlink" class="btn-copy-code">Copiar Comando do Terminal</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: TERMO DE BUSCA E CATEGORIA ATUAL -->
+    <section class="card detected-card">
+      <div class="card-header-small">
+        <span class="card-label">🔍 CATEGORIA / SUBCONJUNTO</span>
+        <span id="site-status-badge" class="badge-status">Aguardando Pixabay</span>
+      </div>
+      <div class="detected-box">
+        <div class="detected-term-row">
+          <span class="search-icon">🏷️</span>
+          <span id="active-term-display" class="detected-term-text">Geral</span>
+          <button id="btn-edit-term" class="btn-ghost" title="Digitar termo manualmente">Mudar</button>
+        </div>
+        <!-- Manual override input -->
+        <div id="manual-term-container" class="manual-term-container hidden">
+          <input type="text" id="manual-term-input" placeholder="Ex: Comercial, Marcha..." maxlength="40">
+          <button id="btn-save-term" class="btn-primary-sm">Salvar</button>
+          <button id="btn-cancel-term" class="btn-ghost-sm">✕</button>
+        </div>
+      </div>
+
+      <!-- Chips de Categorias Rápidas -->
+      <div class="preset-chips">
+        <button class="chip" data-preset="Comercial">💼 Comercial</button>
+        <button class="chip" data-preset="Marcha">🎺 Marcha</button>
+        <button class="chip" data-preset="Podcast">🎙️ Podcast</button>
+        <button class="chip" data-preset="Cinematico">🎬 Cinemático</button>
+        <button class="chip" data-preset="Vinheta">✨ Vinheta</button>
+      </div>
+    </section>
+
+    <!-- SECTION 3: PADRÃO DE NOME -->
+    <section class="card-simple">
+      <div class="form-group">
+        <label for="naming-format-select">Padrão de Nome do Arquivo:</label>
+        <select id="naming-format-select" class="form-select">
+          <option value="term_name">[Categoria] - [Título].mp3 (Recomendado)</option>
+          <option value="name_only">[Título Original].mp3</option>
+          <option value="date_term_name">[Data] / [Categoria] - [Título].mp3</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- SECTION 4: HISTÓRICO COLAPSÁVEL (DISCRETO) -->
+    <div class="accordion-card">
+      <div class="accordion-header" id="toggle-history">
+        <span class="accordion-title">⏱️ Último Download Organizado</span>
+        <span id="history-arrow" class="arrow-icon">▸</span>
+      </div>
+      <div id="history-content" class="accordion-content hidden">
+        <div id="history-empty" class="history-empty">Nenhum download registrado ainda.</div>
+        <div id="last-download-info" class="last-download-info hidden">
+          <div class="file-icon">🎵</div>
+          <div class="file-meta">
+            <div id="last-file-name" class="last-file-title">arquivo.mp3</div>
+            <div id="last-file-path" class="last-file-path">GoogleDrive-Pixabay/...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Actions -->
+    <footer class="app-footer">
+      <button id="btn-open-downloads" class="btn-secondary-full">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+        </svg>
+        Abrir Pasta de Downloads
+      </button>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
